@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from '../components/Layout'
 
 const Home: NextPage = () => {
@@ -13,10 +14,29 @@ const Home: NextPage = () => {
 
       <Layout>
         {
-          (setAlert: Function) => <p>Welcome</p>
+          (setAlert: Function) => (
+            <div className="card text-center">
+              <div className="card-header">
+                Welcome to Task APP
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">
+                  Created by
+                  {' '}
+                  <a href="https://github.com/lexx54" className="link-success" rel='noreferrer' target="_blank">
+                    Codelexx
+                  </a>
+                </h5>
+                <p className="card-text">The app you need for your daily routine</p>
+              </div>
+              <div className="card-footer text-muted">
+                Created at 28/07/2022
+              </div>
+            </div>
+          )
         }
-      </Layout>
-    </div>
+      </Layout >
+    </div >
   )
 }
 
