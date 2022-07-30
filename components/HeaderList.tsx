@@ -25,10 +25,10 @@ const HeaderList = ({ handleAlert, setUpdate }: HeaderProps) => {
       taskdate: today,
     }
 
-    const res = await addTask(dataToSend)
+    await addTask(dataToSend)
     setTask('')
     setUpdate()
-    handleAlert(res.message, SUCCESS)
+    handleAlert('Task Created', SUCCESS)
   }
   return (
     <>

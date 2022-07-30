@@ -51,7 +51,7 @@ const useTask = () => {
       if (json.error) return setError(true)
       return json;
     }
-    func(data)
+    return func(data)
   }, [])
 
   const deleteTask = useCallback((id: string) => {
