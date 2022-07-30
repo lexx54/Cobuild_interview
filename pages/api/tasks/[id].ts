@@ -1,4 +1,4 @@
-import { supabase } from '../../../config/supabaseClientt';
+import { supabase } from '../../../config/supabaseClient';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const id = async (req: NextApiRequest, res: NextApiResponse) => {

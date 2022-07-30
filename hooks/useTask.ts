@@ -8,7 +8,6 @@ export type listProps = {
   id?: string
 }
 
-
 const useTask = () => {
   const [list, setList] = useState<listProps[] | null>(null);
   const [current, setCurrent] = useState<listProps | null>(null);
@@ -21,7 +20,6 @@ const useTask = () => {
       toggleIsLoading()
       const res = await fetch(url)
       const json = await res.json();
-      console.log('data', json.data)
       toggleIsLoading()
       if (json.error) return setError(true)
       setList(json.data)
@@ -34,7 +32,6 @@ const useTask = () => {
       toggleIsLoading()
       const res = await fetch(`${url}/${id}`)
       const json = await res.json();
-      console.log('data', json.data)
       toggleIsLoading()
       if (json.error) return setError(true)
       setCurrent(json.data[0])
@@ -42,17 +39,20 @@ const useTask = () => {
     func(id)
   }, [])
 
-  const addTask = async (data: listProps) => {
-    toggleIsLoading()
-    const res = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-    const json = await res.json();
-    toggleIsLoading()
-    if (json.error) return setError(true)
-    return json;
-  }
+  const addTask = useCallback((data: listProps) => {
+    const func = async (data: listProps) => {
+      toggleIsLoading()
+      const res = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      const json = await res.json();
+      toggleIsLoading()
+      if (json.error) return setError(true)
+      return json;
+    }
+    func(data)
+  }, [])
 
   const deleteTask = useCallback((id: string) => {
     const func = async (id: string) => {
@@ -84,7 +84,7 @@ const useTask = () => {
     return func(id)
   }, [])
 
-  const updateTask = useCallback((id: string, data: string) => {
+  const updateTask = useCallback((id: string, data: any) => {
     const func = async (id: string) => {
       toggleIsLoading()
       const res = await fetch(`${url}/${id}`, {

@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import Router from 'next/router';
-import React, { FC, useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import Layout, { SUCCESS } from '../../components/Layout';
-import useTask, { listProps } from '../../hooks/useTask';
+import useTask from '../../hooks/useTask';
 
 const Id = () => {
-  const [data, setData] = useState<string>('');
+  const [data, setData] = useState<string | undefined>('');
   const [isEdit, toggleEdit] = useReducer(prev => !prev, false);
   const [hasUpdated, toggleHasUpdated] = useReducer(prev => !prev, false);
   const router = useRouter();
@@ -15,8 +15,8 @@ const Id = () => {
 
   useEffect(() => {
     getCurrentTask(String(id))
-    if (isEdit) setData(current.tasktext)
-  }, [getCurrentTask, isEdit, id, hasUpdated])
+    if (isEdit) setData(current?.tasktext)
+  }, [getCurrentTask, isEdit, id, hasUpdated, current?.tasktext])
 
   const handleDelete = () => {
     deleteTask(String(id))
@@ -25,7 +25,6 @@ const Id = () => {
 
   const handleComplete = async (handleAlert: Function) => {
     const res = await updateStatus(String(id), current?.status === 'pending' ? 'completed' : 'pending')
-    // Router.push('/tasks')
     handleAlert(res.message, SUCCESS)
     toggleHasUpdated()
   }

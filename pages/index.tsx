@@ -22,7 +22,7 @@ const Home: NextPage = () => {
                 <h5 className="card-title">
                   Created by
                   {' '}
-                  <a href="https://github.com/lexx54" className="link-success" rel='noreferrer' target="_blank">
+                  <a href="https://github.com/lexx54" className="link-success" rel='noreferrer' target="_blank" id="githubprofile">
                     Codelexx
                   </a>
                 </h5>

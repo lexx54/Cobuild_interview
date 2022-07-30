@@ -23,8 +23,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "config/supabaseClientt.js",
-    "pages/api/tasks/[id].js"
+    "config/supabaseClient.js",
+    "pages/api/tasks/[id].js",
+    "babel.config.js"
   ],
   "exclude": [
     "node_modules"

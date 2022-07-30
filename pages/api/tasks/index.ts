@@ -1,6 +1,8 @@
-import { supabase } from '../../../config/supabaseClientt';
+import { supabase } from '../../../config/supabaseClient';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-const index = async (req: any, res: any) => {
+
+const index = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method, body } = req;
 
   if (method === 'GET') {
